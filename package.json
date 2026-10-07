@@ -1,0 +1,64 @@
+{
+  "name": "iptv-player-windows",
+  "version": "1.2.0",
+  "description": "Professional IPTV Player for Windows - M3U, Xtream Codes, Live TV, Movies, Series, Catch-up and EPG",
+  "main": "src/main.js",
+  "author": "IPTV Player",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable",
+    "dist:portable": "electron-builder --win portable",
+    "dist:nsis": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "hls.js": "^1.6.2"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.iptvplayer.desktop",
+    "productName": "IPTV Player",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "IPTV-Player-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "IPTV Player",
+      "installerLanguages": [
+        "en_US"
+      ],
+      "runAfterFinish": true
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
